@@ -1,6 +1,8 @@
+% Enumerable is an immutable functional collection appropiate for querying
+% and calculations.
 classdef Enumerable < handle
 
-    properties(GetAccess = public, SetAccess = private)
+    properties(GetAccess = public, SetAccess = protected)
         array
     end
     
@@ -37,20 +39,18 @@ classdef Enumerable < handle
             end
         end
         
-        function E = Filter(obj,predicate)
-            E = Enumerable([]);
-            obj.ForEach(@(i) If(predicate(i),@() E.Add(i)));
-        end
-        
-        function Add(obj,item)
-           obj.array = [obj.array,item]; 
+        function Enum = Filter(obj,predicate)
+            list = List([]);
+            obj.ForEach(@(i) If(predicate(i),@() list.Add(i)));
+            Enum = list.ToEnumerable();
         end
         
         function E = Concat(obj,item)
            E = Enumerable([obj.array,item]);
         end
         
-        function result = All(obj,f)
+        function re
+            sult = All(obj,f)
             And = @(b1,b2) b1 && b2;
             result = obj.Map(f).Reduce(And,true);
         end
@@ -73,12 +73,17 @@ classdef Enumerable < handle
         end
         
         function zip = Zip(obj,enumerable,zipFunc)
-            zip = Enumerable([]);
+            list = List([]);
             for i = 1:obj.Count()
-                zip.Add(zipFunc(obj.array(i),enumerable.array(i)));
+                list.Add(zipFunc(obj.array(i),enumerable.array(i)));
             end
+            zip = list.ToEnumerable();
         end
-                
+        
+        function list = ToList(obj)
+            list = List(obj.array);
+        end
+  
     end
     
 end
