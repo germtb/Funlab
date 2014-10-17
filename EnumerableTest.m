@@ -26,4 +26,8 @@ assert(e1.Average() == 2);
 e5 = e1.Zip(e1,multiply);
 assert(e5.Sum() == 14);
 
+assert(e1.Head() == 1);
+assert(e1.Last() == 3);
+assert(sum(e1.Bounds()) == sum([1,3]));
+
 disp('All test passed')

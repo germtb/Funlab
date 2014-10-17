@@ -49,8 +49,7 @@ classdef Enumerable < handle
            E = Enumerable([obj.array,item]);
         end
         
-        function re
-            sult = All(obj,f)
+        function result = All(obj,f)
             And = @(b1,b2) b1 && b2;
             result = obj.Map(f).Reduce(And,true);
         end
@@ -82,6 +81,18 @@ classdef Enumerable < handle
         
         function list = ToList(obj)
             list = List(obj.array);
+        end
+        
+        function head = Head(obj)
+           head = obj.array(1);
+        end
+        
+        function last = Last(obj)
+           last = obj.array(obj.Count());
+        end
+        
+        function bounds = Bounds(obj)
+            bounds = [obj.Head(),obj.Last()];
         end
   
     end
