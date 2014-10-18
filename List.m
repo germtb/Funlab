@@ -26,6 +26,10 @@ classdef List < Enumerable
             end
         end
         
+        function Clear(obj)
+           obj.array = []; 
+        end
+        
         function enumerable = ToEnumerable(obj)
             enumerable = Enumerable(obj.array);
         end
