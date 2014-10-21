@@ -1,12 +1,13 @@
-function points = LoopInput( )
-    points = [];
+function points = LoopInput(message)
+    list = List([]);
     while(true)
-        point = input('Add data (click enter to exit loop)\n');
+        point = input([message ' (or click enter to exit loop)\n']);
         if (isempty(point))
             break;
         else
-            points = [points;point];
+            list.Add(point);
         end
     end
+    points = list.array;
 end
 

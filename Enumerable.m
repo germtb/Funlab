@@ -7,9 +7,11 @@ classdef Enumerable < handle
     end
     
     methods(Static)
+        
         function Enum = Empty()
             Enum = Enumerable([]);
         end
+        
     end
     
     methods
@@ -28,8 +30,13 @@ classdef Enumerable < handle
             end    
         end
         
+%       Hic sunt dracones
         function E = Map(obj,f)
-           E = Enumerable(arrayfun(f,obj.array));
+            tempList = List([]);
+            for i = 1:obj.Count()
+               tempList.Add(f(obj.array(i)));
+            end
+            E = tempList.ToEnumerable();
         end
         
         function acc = Reduce(obj,f,initialValue)
