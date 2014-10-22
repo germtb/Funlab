@@ -2,6 +2,8 @@
 % and calculations.
 classdef Enumerable < handle
 
+    
+  
     properties(GetAccess = public, SetAccess = protected)
         array
     end
