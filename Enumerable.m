@@ -8,7 +8,9 @@ classdef Enumerable < handle
         array
     end
     
-    methods(Static)
+	
+	
+    methods(Static)  
         
         function Enum = Empty()
             Enum = Enumerable([]);
